@@ -1,0 +1,107 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+  meta(http-equiv='X-UA-Compatible', content='IE=edge')
+  meta(name='apple-mobile-web-app-capable', content='yes')
+  meta(name='apple-mobile-web-app-status-bar-style', content='black-translucent')
+  title #{title} - QLHTKT - VWA
+  link(rel='stylesheet', href='stylesheets/bootstrap.min.css')
+  link(rel='stylesheet', href='stylesheets/font-awesome.css')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css')
+  link(href='//fonts.googleapis.com/css?family=Roboto', rel='stylesheet', type='text/css')
+  link(href='https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.common-material.min.css', rel='stylesheet')
+  link(href='https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.material.min.css', rel='stylesheet')
+  link(rel='stylesheet', href='stylesheets/custom-kendo.css')
+  link(rel='stylesheet', href='stylesheets/main.css')
+  block stylesheets
+#wrapper
+  nav.navbar.navbar-default.top-navbar(role='navigation')
+    .navbar-header
+      button.navbar-toggle(type='button', data-toggle='collapse', data-target='.sidebar-collapse')
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand(href='/quantri')
+        strong VWA
+      #sideNav(href='')
+        i.fa.fa-bars.icon
+    #heading.navbar-header
+      a.navbar-brand.heading(href='javascript:void(0)')
+        strong= Heading?Heading:'QLHTKT - VWA'
+    ul.nav.navbar-top-links.navbar-right
+      li.dropdown
+        a.dropdown-toggle(data-toggle='dropdown', href='#', aria-expanded='false')
+          i.fa.fa-user.fa-fw
+          i.fa.fa-caret-down
+        ul.dropdown-menu.dropdown-user
+          li
+            a
+              span.user= User.DisplayName
+          li.divider
+          li
+            a#changepwd(href='javascript:void(0)')
+              i.fa.fa-user.fa-fw
+              | Đổi mật khẩu
+          li.divider
+          li
+            a(href='/quantri/logout')
+              i.fa.fa-sign-out.fa-fw
+              | Đăng xuất
+        // /.dropdown-user
+      // /.dropdown
+  nav.navbar-default.navbar-side(role='navigation')
+    .sidebar-collapse
+      ul#main-menu.nav
+        if(capabilities.some(function(s){return s.startsWith('QLTKNQ')}))
+          if(capabilities.indexOf('QLTKNQ-QLTK') !== -1)
+            li
+              a(href='quan-ly-tai-khoan-nhom-quyen?m=tai-khoan') Quản lý tài khoản
+          if(capabilities.indexOf('QLTKNQ-NLDL') !== -1)
+            li
+              a(href='quan-ly-tai-khoan-nhom-quyen?m=nhom-lop-du-lieu') Quản lý nhóm lớp dữ liệu
+          if(capabilities.indexOf('QLTKNQ-LDL') !== -1)
+            li
+              a(href='quan-ly-tai-khoan-nhom-quyen?m=lop-du-lieu') Quản lý lớp dữ liệu
+          if(capabilities.indexOf('QLTKNQ-QLNQ') !== -1)
+            li
+              a(href='quan-ly-tai-khoan-nhom-quyen?m=nhom-quyen') Quản lý nhóm quyền
+          if(capabilities.some(function(s){return s.startsWith('QLTKNQ-QLKNTC')}))
+            li
+              a(href='#')
+                | Quản lý khả năng truy cập
+                span.fa.arrow
+              ul.nav.nav-second-level
+                if(capabilities.indexOf('QLTKNQ-QLKNTC-CN-Q') !== -1||capabilities.indexOf('QLTKNQ-QLKNTC-CN-TK') !== -1)
+                  li 
+                    a(href='#')
+                      |Chức năng
+                      span.fa.arrow
+                    ul.nav.nav-third-level
+                      if(capabilities.indexOf('QLTKNQ-QLKNTC-CN-Q') !== -1)
+                        li
+                          a(href='quan-ly-tai-khoan-nhom-quyen?m=chuc-nang-quyen') Quyền
+                      if(capabilities.indexOf('QLTKNQ-QLKNTC-CN-TK') !== -1)
+                        li
+                          a(href='quan-ly-tai-khoan-nhom-quyen?m=chuc-nang-tai-khoan') Tài khoản
+                if(capabilities.indexOf('QLTKNQ-QLKNTC-LDL-Q') !== -1||capabilities.indexOf('QLTKNQ-QLKNTC-LDL-TK') !== -1)
+                  li
+                    a(href='#')
+                      |Lớp dữ liệu
+                      span.fa.arrow
+                    ul.nav.nav-third-level
+                      if(capabilities.indexOf('QLTKNQ-QLKNTC-LDL-Q') !== -1)
+                        li
+                          a(href='quan-ly-tai-khoan-nhom-quyen?m=lop-du-lieu-quyen') Quyền
+                      if(capabilities.indexOf('QLTKNQ-QLKNTC-LDL-Q') !== -1)
+                        li
+                          a(href='quan-ly-tai-khoan-nhom-quyen?m=lop-du-lieu-tai-khoan') Tài khoản
+  #page-wrapper
+    block content
+script(src='https://kendo.cdn.telerik.com/2017.3.1026/js/jquery.min.js')
+script(src='javascripts/lib/bootstrap.min.js')
+script(src='javascripts/lib/jquery.metisMenu.js')
+script(src='https://kendo.cdn.telerik.com/2017.3.1026/js/kendo.all.min.js')
+script(src='javascripts/main.js')
+block javascripts
